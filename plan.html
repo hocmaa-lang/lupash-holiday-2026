@@ -1,0 +1,420 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+<title>Lupash · תוכנית תוכן 16.11–15.12</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Rubik:wght@400;500;700&family=Nunito:wght@600;800&display=swap">
+<style>
+:root{--bg:#F5F8FD;--card:#fff;--navy:#1F2A5B;--muted:#5B6488;--line:#DCE4F2;--sky:#E6F0FB;--orange:#F7860B;--violet:#7155D5;--ok:#1E8E4E;--okbg:#E5F6EC;--fix:#B45309;--fixbg:#FEF3E2}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--navy);font:16px/1.6 Rubik,system-ui,sans-serif;padding:24px max(16px,env(safe-area-inset-right,0px)) 80px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:1160px;margin:0 auto;display:grid;gap:34px}h1,h2,h3{font-family:Fredoka,Rubik,sans-serif;font-weight:600;margin:0;line-height:1.2;text-wrap:balance}
+.en{direction:ltr;text-align:left;unicode-bidi:isolate;font-family:Nunito,Rubik,sans-serif}
+.hero{background:var(--navy);color:#fff;border-radius:26px;padding:28px;display:grid;gap:12px}.hero h1{font-size:clamp(28px,4.5vw,42px)}.hero h1 b{color:var(--orange)}.hero p{margin:0;color:#D6DCF2;max-width:75ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:rgba(255,255,255,.12);border-radius:99px;padding:5px 13px;font-size:14px}.chip.o{background:var(--orange);color:var(--navy);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 18px}.box h3{font-size:18px;margin-bottom:4px}.box p{margin:0;font-size:15px;color:var(--muted)}.num{font:600 34px Fredoka;color:var(--orange)}
+.week{display:grid;gap:14px}.wh{display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}.wh h2{font-size:26px}.wd{color:var(--muted)}.wn{margin:0;color:var(--muted)}
+.items{display:grid;gap:16px}.item{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;display:grid;gap:12px;border-inline-start:6px solid var(--line)}
+.item[data-st=approved]{border-inline-start-color:var(--ok)}.item[data-st=changes]{border-inline-start-color:var(--fix)}
+.item header{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:14px}.d{font-weight:700}.ch{border-radius:99px;padding:3px 11px;background:var(--sky)}.ch-email{background:#EDE8FB}.ch-reel{background:#FFE9D2}.ch-promo{background:var(--orange);color:var(--navy);font-weight:700}.id{color:var(--muted);margin-inline-start:auto}
+.item h3{font-size:21px}.body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}@media(max-width:820px){.body{grid-template-columns:1fr}}
+.media{max-width:460px}.media figure{margin:0;cursor:zoom-in;border-radius:14px;overflow:hidden;background:var(--sky)}.media img{display:block;width:100%;height:auto}
+.strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}.strip figure{flex:0 0 46%;scroll-snap-align:start}.strip.st figure{flex-basis:31%}.strip.promo figure.wide{flex-basis:70%}
+.vid{cursor:default!important;max-width:330px}.vid video{display:block;width:100%;background:#000;border-radius:14px}.mail{max-height:620px;overflow-y:auto!important;max-width:420px}
+.kv{display:grid;gap:2px;margin-bottom:10px}.kv span{font-size:13px;color:var(--muted);font-weight:500}.kv p{margin:0}.cap{white-space:pre-line;background:var(--bg);border-radius:12px;padding:10px 12px;font-size:15px;line-height:1.5}
+.kv.warn p{background:var(--fixbg);border-radius:10px;padding:8px 10px;color:#7A3E06}.ai{font-size:13px;color:var(--violet);margin:0}a{color:var(--violet)}
+.rev{border-top:1px dashed var(--line);padding-top:12px;display:grid;gap:8px}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.rev button{font:600 15px Rubik;border-radius:99px;border:2px solid var(--line);background:#fff;color:var(--navy);padding:7px 16px;cursor:pointer}.rev .ok.on{background:var(--ok);border-color:var(--ok);color:#fff}.rev .fx.on{background:var(--fix);border-color:var(--fix);color:#fff}
+.rev textarea{font:15px Rubik;border:1px solid var(--line);border-radius:12px;padding:9px 11px;width:100%;resize:vertical;min-height:52px}.pill{font-size:13px;color:var(--muted)}
+button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+#bar{position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;border-radius:18px;padding:12px 16px;display:grid;gap:10px}
+#bar .r{display:flex;gap:10px;flex-wrap:wrap;align-items:center}#bar b{font:600 22px Fredoka}#bar .c{display:flex;gap:6px;align-items:baseline}#bar input{font:15px Rubik;border-radius:99px;border:0;padding:8px 14px;min-width:0;flex:1 1 160px}
+#bar button{font:700 15px Rubik;border-radius:99px;border:0;padding:8px 16px;cursor:pointer;background:#fff;color:var(--navy)}#bar #send{background:var(--orange)}#bar .f[aria-pressed=true]{background:var(--violet);color:#fff}
+@media(max-width:700px){#bar{position:static}}#prog{height:6px;background:rgba(255,255,255,.2);border-radius:9px;overflow:hidden}#prog i{display:block;height:100%;width:0;background:var(--orange)}
+#lb{position:fixed;inset:0;background:rgba(15,20,45,.92);display:none;z-index:20;align-items:center;justify-content:center;padding:16px}#lb.on{display:flex}#lb img{max-width:100%;max-height:92vh;border-radius:10px}#lb .x{position:absolute;top:14px;left:14px;font:700 22px Rubik;background:#fff;border:0;border-radius:99px;width:44px;height:44px;cursor:pointer}
+#lb .scroll{max-height:94vh;overflow:auto}#flash{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:99px;opacity:0;transition:.3s;z-index:30}#flash.on{opacity:1}
+ol.q{margin:0;padding-inline-start:20px;display:grid;gap:6px}
+</style></head><body><div class="wrap">
+<header class="hero"><div class="chips"><span class="chip o">לאישור הלקוח</span><span class="chip">16.11 – 15.12.2026</span><span class="chip">פייסבוק · אינסטגרם · אימייל · אתר</span></div>
+<h1>Lupash · תוכנית תוכן <b>לחודש הקרוב</b></h1>
+<p>כל פוסט, רילס, סטורי ומייל לחודש הקרוב, עם התאריך, הטקסט המלא והקובץ המוכן. אפשר לאשר כל פריט, לבקש תיקון ולכתוב הערה. ההערות נשמרות ונשלחות אלינו אוטומטית.</p>
+<p>הכול נבנה לפי מדריך המותג החדש (v2.2) ורק סביב מוצרים שיש במלאי: CBTiger, Emotions Flashcards, Magnet Feelings Poster, Emotions Starter ו-CBTrip. הטקסטים באנגלית, לקהל בארה"ב.</p></header>
+<div class="grid">
+<div class="box"><div class="num">11</div><h3>פוסטים</h3><p>9 פוסטים + 2 קרוסלות, בפייסבוק ובאינסטגרם</p></div>
+<div class="box"><div class="num">7</div><h3>רילס</h3><p>12–31 שניות, כתוביות תמיד מוצגות</p></div>
+<div class="box"><div class="num">4</div><h3>סטים של סטוריז</h3><p>סקרים, שאלות ולינק למוצר</p></div>
+<div class="box"><div class="num">9</div><h3>אימיילים</h3><p>פעמיים בשבוע, חתומים על ידי דנה: 6 מועילים ו-3 מכירה</p></div>
+<div class="box"><div class="num">1</div><h3>מבצע באתר</h3><p>Holiday Gift Sets: 15% על 2 משחקים ומעלה, 23.11–14.12</p></div></div>
+<div id="bar"><div class="r"><div class="c"><b id="cA">0</b><span>מאושרים</span></div><div class="c"><b id="cC">0</b><span>לתיקון</span></div><div class="c"><b id="cP">0</b><span>ממתינים</span></div>
+<button class="f" data-f="all" aria-pressed="true">הכל</button><button class="f" data-f="pending" aria-pressed="false">ממתינים</button><button class="f" data-f="changes" aria-pressed="false">לתיקון</button></div>
+<div id="prog"><i></i></div><div class="r"><label for="who">השם שלך</label><input id="who" autocomplete="name" placeholder="למשל: דנה"><button id="send" type="button">שליחה לסוכנות</button><button id="copy" type="button">העתקת סיכום</button></div></div>
+<section class="week"><div class="wh"><h2>שבוע 1 · לתת שם לרגש</h2><span class="wd">16–22 בנובמבר</span></div><p class="wn">פתיחת "Feeling of the week", הכרות עם CBTiger, Emotions Flashcards והפוסטר.</p>
+  <div class="items"><article class="item" data-key="F01" data-ch="feed" data-w="0">
+  <header><span class="d">יום שני 16.11</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F01</span></header>
+  <h3>Feeling of the week: confident</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F01.jpg"><img loading="lazy" src="t/F01.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Feeling of the week: confident. 🦁
+Confidence grows in small moments: raising a hand, trying again, saying &quot;I can do this.&quot;
+One question to ask tonight: &quot;When did you feel brave this week?&quot;
+One thing to try: share a time you felt nervous and did it anyway.
+What did your kid say? Tell us below.
+#feelingoftheweek #socialemotionallearning #parentingtips #familygamenight</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F01"></div></article><article class="item" data-key="S01" data-ch="story" data-w="0">
+  <header><span class="d">יום שני 16.11</span><span class="ch ch-story">סטוריז</span><span class="id en">S01</span></header>
+  <h3>Story set: the &quot;fine&quot; poll</h3>
+  <div class="body"><div class="media"><div class="strip st"><figure class="" data-full="m/S01_a.jpg"><img loading="lazy" src="t/S01_a.jpg" alt=""></figure><figure class="" data-full="m/S01_b.jpg"><img loading="lazy" src="t/S01_b.jpg" alt=""></figure><figure class="" data-full="m/S01_c.jpg"><img loading="lazy" src="t/S01_c.jpg" alt=""></figure></div></div><div class="txt">
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="S01"></div></article><article class="item" data-key="E01" data-ch="email" data-w="0">
+  <header><span class="d">יום שלישי 17.11</span><span class="ch ch-email">אימייל</span><span class="id en">E01</span></header>
+  <h3>Five questions to ask at dinner this week</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E01.jpg"><img loading="lazy" src="t/mail_E01.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Five questions to ask at dinner this week</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">Easy ways to talk about friends, worries and proud moments.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E01"></div></article><article class="item" data-key="R01" data-ch="reel" data-w="0">
+  <header><span class="d">יום שלישי 17.11</span><span class="ch ch-reel">רילס</span><span class="id en">R01</span></header>
+  <h3>Reel: Go Fish, but with feelings</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R01_cover.jpg" src="m/R01.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Go Fish, but with feelings.
+Every set you collect comes with a question about that feeling, so the best conversations happen while you play.
+Which feeling would your kid collect first?
+#cbtiger #familygamenight #socialemotionallearning #feelings</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="R01"></div></article><article class="item" data-key="C01" data-ch="carousel" data-w="0">
+  <header><span class="d">יום חמישי 19.11</span><span class="ch ch-carousel">קרוסלה פייסבוק + אינסטגרם</span><span class="id en">C01</span></header>
+  <h3>Inside the box: Emotions Flashcards</h3>
+  <div class="body"><div class="media"><div class="strip"><figure class="" data-full="m/C01_s1.jpg"><img loading="lazy" src="t/C01_s1.jpg" alt=""></figure><figure class="" data-full="m/C01_s2.jpg"><img loading="lazy" src="t/C01_s2.jpg" alt=""></figure><figure class="" data-full="m/C01_s3.jpg"><img loading="lazy" src="t/C01_s3.jpg" alt=""></figure><figure class="" data-full="m/C01_s4.jpg"><img loading="lazy" src="t/C01_s4.jpg" alt=""></figure><figure class="" data-full="m/C01_s5.jpg"><img loading="lazy" src="t/C01_s5.jpg" alt=""></figure></div></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Inside the box: Emotions Flashcards.
+46 cards, 20 feelings, 5 values and three games in one deck: memory, identify the emotion and snap.
+Kids learn the words for big feelings while they play, and you get a question to talk about on every card.
+Which game would your family start with?
+#insidethebox #emotionsflashcards #feelingswords #playbasedlearning</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Flashcards</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/emotions-flashcards" target="_blank" rel="noopener">lupashgames.com/products/emotions-flashcards</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="C01"></div></article><article class="item" data-key="E02" data-ch="email" data-w="0">
+  <header><span class="d">יום שישי 20.11</span><span class="ch ch-email">אימייל</span><span class="id en">E02</span></header>
+  <h3>Three games in one deck</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E02.jpg"><img loading="lazy" src="t/mail_E02.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Three games in one deck, and how to play them</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">Ten minutes, no screens, lots of feelings words.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Flashcards</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/emotions-flashcards" target="_blank" rel="noopener">lupashgames.com/products/emotions-flashcards</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E02"></div></article><article class="item" data-key="R02" data-ch="reel" data-w="0">
+  <header><span class="d">יום שבת 21.11</span><span class="ch ch-reel">רילס</span><span class="id en">R02</span></header>
+  <h3>Reel: one move says it all</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R02_cover.jpg" src="m/R02.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">One move says it all.
+In the morning, your kid slides the &quot;I'm feeling&quot; frame onto how they feel. You get a head start on the day, without a single &quot;fine.&quot;
+Where would yours put the frame today?
+#feelingsposter #morningroutine #feelingscheckin #parenting</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Magnet Feelings Poster</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/magnet-feelings-poster" target="_blank" rel="noopener">lupashgames.com/products/magnet-feelings-poster</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="R02"></div></article></div></section><section class="week"><div class="wh"><h2>שבוע 2 · השקת מארזי המתנה + חג ההודיה</h2><span class="wd">23–29 בנובמבר</span></div><p class="wn">המבצע עולה לאתר ב-23.11. ביום חג ההודיה תוכן משפחתי בלבד, בלי מכירה.</p>
+  <div class="items"><article class="item" data-key="P01" data-ch="promo" data-w="1">
+  <header><span class="d">יום שני 23.11</span><span class="ch ch-promo">מבצע באתר</span><span class="id en">P01</span></header>
+  <h3>Site offer: Holiday Gift Sets (23.11–14.12)</h3>
+  <div class="body"><div class="media"><div class="strip promo"><figure class="wide" data-full="m/P01_desktop.jpg"><img loading="lazy" src="t/P01_desktop.jpg" alt=""></figure><figure class="" data-full="m/P01_mobile.jpg"><img loading="lazy" src="t/P01_mobile.jpg" alt=""></figure></div></div><div class="txt"><div class="kv"><span>ההצעה</span><p>15% הנחה על הזמנה של 2 משחקים ומעלה · קוד <b class="en">GIFTSET15</b> שמופעל אוטומטית מכל לינק</p></div>
+    <div class="kv"><span>תאריכים</span><p>23.11 – 14.12</p></div><div class="kv"><span>המארז המוביל</span><p>Emotions Starter (CBTiger + Emotions Flashcards + Magnet Feelings Poster), במלאי: 53</p></div>
+    <div class="kv"><span>זוגות מומלצים</span><p class="en">CBTiger + Emotions Flashcards · CBTiger + Magnet Feelings Poster · CBTrip + CBTiger</p></div>
+    <div class="kv warn"><span>עדיין לא בוצע</span><p>הקוד לא נוצר בשופיפיי והבאנר לא עלה לאתר. אחרי אישור: יצירת הקוד, באנר בראש דף הבית והקטלוג, והסרה אוטומטית ב-15.12.</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">All in-stock games</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="P01"></div></article><article class="item" data-key="E03" data-ch="email" data-w="1">
+  <header><span class="d">יום שני 23.11</span><span class="ch ch-email">אימייל</span><span class="id en">E03</span></header>
+  <h3>Holiday gift sets are here</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E03.jpg"><img loading="lazy" src="t/mail_E03.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Holiday gift sets are here</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">Two or more games, 15% off, until December 14.</p></div><div class="kv"><span>סוג</span><p>מכירה · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Starter</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="E03"></div></article><article class="item" data-key="S02" data-ch="story" data-w="1">
+  <header><span class="d">יום שני 23.11</span><span class="ch ch-story">סטוריז</span><span class="id en">S02</span></header>
+  <h3>Story set: gift sets launch</h3>
+  <div class="body"><div class="media"><div class="strip st"><figure class="" data-full="m/S02_a.jpg"><img loading="lazy" src="t/S02_a.jpg" alt=""></figure><figure class="" data-full="m/S02_b.jpg"><img loading="lazy" src="t/S02_b.jpg" alt=""></figure><figure class="" data-full="m/S02_c.jpg"><img loading="lazy" src="t/S02_c.jpg" alt=""></figure></div></div><div class="txt">
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Starter</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="S02"></div></article><article class="item" data-key="R03" data-ch="reel" data-w="1">
+  <header><span class="d">יום שלישי 24.11</span><span class="ch ch-reel">רילס</span><span class="id en">R03</span></header>
+  <h3>Reel: &quot;What would you choose?&quot; (real kids)</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R03_cover.jpg" src="m/R03.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">&quot;What would you choose?&quot;
+In CBTrip, kids answer picture cards, hear what everyone else chose and explain their own answer. That is where the real conversations start.
+What would your kid choose?
+#cbtrip #familygamenight #boardgamesforkids #screenfree</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTrip</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtrip-board-game" target="_blank" rel="noopener">lupashgames.com/products/cbtrip-board-game</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="R03"></div></article><article class="item" data-key="F02" data-ch="feed" data-w="1">
+  <header><span class="d">יום רביעי 25.11</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F02</span></header>
+  <h3>Holiday gift sets: the Emotions Starter</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F02.jpg"><img loading="lazy" src="t/F02.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Holiday gift sets are here.
+The Emotions Starter brings CBTiger, Emotions Flashcards and the Magnet Feelings Poster together: recognize a feeling, say something about it, and handle the harder ones.
+Pick any two games or more and save 15% until December 14. Link in bio.
+Who's on your list this year?
+#holidaygifts #giftsforkids #familygamenight #socialemotionallearning</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Starter</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fproducts%2Femotions-starter</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="F02"></div></article><article class="item" data-key="E04" data-ch="email" data-w="1">
+  <header><span class="d">יום חמישי 26.11</span><span class="ch ch-email">אימייל</span><span class="id en">E04</span></header>
+  <h3>Questions for the holiday table (Thanksgiving)</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E04.jpg"><img loading="lazy" src="t/mail_E04.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Questions for the holiday table</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">A printable for today, from our family to yours.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">—</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com" target="_blank" rel="noopener">lupashgames.com</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E04"></div></article><article class="item" data-key="F03" data-ch="feed" data-w="1">
+  <header><span class="d">יום חמישי 26.11</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F03</span></header>
+  <h3>Thanksgiving: one question for the table</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F03.jpg"><img loading="lazy" src="t/F03.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Happy Thanksgiving from our family to yours.
+One question for the table today: &quot;What made you happy this year?&quot; Let the youngest ask it.
+What answer surprised you most?
+#thanksgiving #familytime #gratitude #conversationstarters</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">—</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com" target="_blank" rel="noopener">lupashgames.com</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F03"></div></article><article class="item" data-key="F04" data-ch="feed" data-w="1">
+  <header><span class="d">יום שבת 28.11</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F04</span></header>
+  <h3>Feeling of the week: hopeful</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F04.jpg"><img loading="lazy" src="t/F04.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Feeling of the week: hopeful.
+Hope is the feeling that tomorrow can be good, even after a hard day.
+One question to ask: &quot;What are you looking forward to?&quot;
+One thing to try: make a short &quot;next week I want to…&quot; list together.
+What's on your kid's list?
+#feelingoftheweek #hopeful #socialemotionallearning #parentingtips</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F04"></div></article></div></section><section class="week"><div class="wh"><h2>שבוע 3 · מדריך מתנות + חנוכה</h2><span class="wd">30.11–6.12</span></div><p class="wn">מדריך "משחק לכל סוג של ילד", וחנוכה מתחילה ב-4.12 בערב.</p>
+  <div class="items"><article class="item" data-key="F05" data-ch="feed" data-w="2">
+  <header><span class="d">יום שני 30.11</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F05</span></header>
+  <h3>Feeling of the week: worried</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F05.jpg"><img loading="lazy" src="t/F05.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Feeling of the week: worried.
+Every kid worries sometimes. Naming it out loud makes it smaller.
+One question to ask: &quot;What helps you when you feel worried?&quot;
+One thing to try: take three slow breaths together, then talk.
+What helps in your house?
+#feelingoftheweek #bigfeelings #socialemotionallearning #parentingtips</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F05"></div></article><article class="item" data-key="E05" data-ch="email" data-w="2">
+  <header><span class="d">יום שלישי 1.12</span><span class="ch ch-email">אימייל</span><span class="id en">E05</span></header>
+  <h3>How to play CBTiger in 60 seconds</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E05.jpg"><img loading="lazy" src="t/mail_E05.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">How to play CBTiger in 60 seconds</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">If you know Go Fish, you already know how.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E05"></div></article><article class="item" data-key="R04" data-ch="reel" data-w="2">
+  <header><span class="d">יום שלישי 1.12</span><span class="ch ch-reel">רילס</span><span class="id en">R04</span></header>
+  <h3>Reel: three gifts, three kinds of kids</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R04_cover.jpg" src="m/R04.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Three gifts, three kinds of kids.
+For the little talker: Emotions Flashcards. For the card shark: CBTiger. For the storyteller: CBTrip.
+Two games or more save 15% until December 14.
+Which one is your kid?
+#giftguide #giftsforkids #holidaygifts #familygamenight</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Gift guide</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="R04"></div></article><article class="item" data-key="C02" data-ch="carousel" data-w="2">
+  <header><span class="d">יום חמישי 3.12</span><span class="ch ch-carousel">קרוסלה פייסבוק + אינסטגרם</span><span class="id en">C02</span></header>
+  <h3>Gift guide carousel: a game for every kid</h3>
+  <div class="body"><div class="media"><div class="strip"><figure class="" data-full="m/C02_s1.jpg"><img loading="lazy" src="t/C02_s1.jpg" alt=""></figure><figure class="" data-full="m/C02_s2.jpg"><img loading="lazy" src="t/C02_s2.jpg" alt=""></figure><figure class="" data-full="m/C02_s3.jpg"><img loading="lazy" src="t/C02_s3.jpg" alt=""></figure><figure class="" data-full="m/C02_s4.jpg"><img loading="lazy" src="t/C02_s4.jpg" alt=""></figure><figure class="" data-full="m/C02_s5.jpg"><img loading="lazy" src="t/C02_s5.jpg" alt=""></figure><figure class="" data-full="m/C02_s6.jpg"><img loading="lazy" src="t/C02_s6.jpg" alt=""></figure></div></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">A game for every kind of kid.
+The little talker, the card shark, the storyteller, the morning chatterbox: swipe to find the one that fits yours.
+Pick two or more and save 15% until December 14. Link in bio.
+Which slide is your kid?
+#giftguide #giftsforkids #holidaygifts #socialemotionallearning</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Gift guide</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="C02"></div></article><article class="item" data-key="E06" data-ch="email" data-w="2">
+  <header><span class="d">יום שישי 4.12</span><span class="ch ch-email">אימייל</span><span class="id en">E06</span></header>
+  <h3>Gift guide + Hanukkah begins tonight</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E06.jpg"><img loading="lazy" src="t/mail_E06.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">A gift for every kind of kid</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">Our gift guide, plus 15% off two or more games.</p></div><div class="kv"><span>סוג</span><p>מכירה · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Gift guide</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="E06"></div></article><article class="item" data-key="F06" data-ch="feed" data-w="2">
+  <header><span class="d">יום שישי 4.12</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F06</span></header>
+  <h3>Hanukkah: eight nights, eight feelings</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F06.jpg"><img loading="lazy" src="t/F06.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Happy Hanukkah to all who celebrate.
+One idea for the eight nights: light a candle, pick one feeling, and everyone shares a moment they felt it.
+Tonight's feeling: happy.
+Which feeling would you pick for night two?
+#hanukkah #familytraditions #feelings #familytime</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F06"></div></article><article class="item" data-key="S03" data-ch="story" data-w="2">
+  <header><span class="d">יום שישי 4.12</span><span class="ch ch-story">סטוריז</span><span class="id en">S03</span></header>
+  <h3>Story set: gift guide quiz</h3>
+  <div class="body"><div class="media"><div class="strip st"><figure class="" data-full="m/S03_a.jpg"><img loading="lazy" src="t/S03_a.jpg" alt=""></figure><figure class="" data-full="m/S03_b.jpg"><img loading="lazy" src="t/S03_b.jpg" alt=""></figure><figure class="" data-full="m/S03_c.jpg"><img loading="lazy" src="t/S03_c.jpg" alt=""></figure><figure class="" data-full="m/S03_d.jpg"><img loading="lazy" src="t/S03_d.jpg" alt=""></figure></div></div><div class="txt">
+    <div class="kv"><span>מוצר</span><p class="en">Gift guide</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="S03"></div></article><article class="item" data-key="R05" data-ch="reel" data-w="2">
+  <header><span class="d">יום שבת 5.12</span><span class="ch ch-reel">רילס</span><span class="id en">R05</span></header>
+  <h3>Reel: snap the feeling</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R05_cover.jpg" src="m/R05.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Snap the feeling.
+Same feeling on two cards? Snap it first and say the word out loud. Kids learn the words for big feelings without noticing they're learning.
+Who's the fastest snapper in your house?
+#emotionsflashcards #feelingswords #playbasedlearning #familygamenight</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Flashcards</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/emotions-flashcards" target="_blank" rel="noopener">lupashgames.com/products/emotions-flashcards</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="R05"></div></article></div></section><section class="week"><div class="wh"><h2>שבוע 4 · רוגע + קריאה אחרונה</h2><span class="wd">7–13 בדצמבר</span></div><p class="wn">רגע לפני סוף המבצע (14.12) ותאריך ההזמנה האחרון לחגים.</p>
+  <div class="items"><article class="item" data-key="F07" data-ch="feed" data-w="3">
+  <header><span class="d">יום שני 7.12</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F07</span></header>
+  <h3>Feeling of the week: calm</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F07.jpg"><img loading="lazy" src="t/F07.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Feeling of the week: calm.
+The holidays are busy, loud and wonderful. Calm is worth practicing.
+One question to ask (it's on our Calm card): &quot;When do you think it's important to be calm?&quot;
+One thing to try: a two-minute quiet corner before bedtime.
+Where is your family's calm spot?
+#feelingoftheweek #calm #socialemotionallearning #bedtimeroutine</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Emotions Flashcards</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/emotions-flashcards" target="_blank" rel="noopener">lupashgames.com/products/emotions-flashcards</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F07"></div></article><article class="item" data-key="E07" data-ch="email" data-w="3">
+  <header><span class="d">יום שלישי 8.12</span><span class="ch ch-email">אימייל</span><span class="id en">E07</span></header>
+  <h3>A calm-down plan for busy holiday days</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E07.jpg"><img loading="lazy" src="t/mail_E07.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">A calm-down plan for busy holiday days</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">Three steps you can start tomorrow morning.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Magnet Feelings Poster</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/magnet-feelings-poster" target="_blank" rel="noopener">lupashgames.com/products/magnet-feelings-poster</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E07"></div></article><article class="item" data-key="R06" data-ch="reel" data-w="3">
+  <header><span class="d">יום שלישי 8.12</span><span class="ch ch-reel">רילס</span><span class="id en">R06</span></header>
+  <h3>Reel: CBTrip in 60 seconds (real kids)</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R06_cover.jpg" src="m/R06.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Inside the box: CBTrip.
+Move along the board, answer a picture card, hear everyone's answers and vote with your tokens. Simple to learn, and every turn starts a conversation.
+Who would win at your table?
+#insidethebox #cbtrip #boardgamesforkids #familygamenight</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTrip</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtrip-board-game" target="_blank" rel="noopener">lupashgames.com/products/cbtrip-board-game</a></p></div>
+    
+  </div></div>
+  <div class="rev" data-key="R06"></div></article><article class="item" data-key="F08" data-ch="feed" data-w="3">
+  <header><span class="d">יום חמישי 10.12</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F08</span></header>
+  <h3>For classrooms and counseling rooms</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F08.jpg"><img loading="lazy" src="t/F08.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">For teachers and counselors.
+The Magnet Feelings Poster sticks to a whiteboard, a filing cabinet or a metal door. Each student slides the &quot;I'm feeling&quot; frame to start the day, one to one or as a group.
+How do your students check in?
+#teachersofinstagram #schoolcounselor #socialemotionallearning #classroomideas</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Magnet Feelings Poster</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/magnet-feelings-poster" target="_blank" rel="noopener">lupashgames.com/products/magnet-feelings-poster</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F08"></div></article><article class="item" data-key="E08" data-ch="email" data-w="3">
+  <header><span class="d">יום שישי 11.12</span><span class="ch ch-email">אימייל</span><span class="id en">E08</span></header>
+  <h3>Last days: gift sets + order-by date</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E08.jpg"><img loading="lazy" src="t/mail_E08.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Last days for holiday gift sets</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">15% off two or more games ends December 14.</p></div><div class="kv"><span>סוג</span><p>מכירה · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Gift sets</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E08"></div></article><article class="item" data-key="R07" data-ch="reel" data-w="3">
+  <header><span class="d">יום שבת 12.12</span><span class="ch ch-reel">רילס</span><span class="id en">R07</span></header>
+  <h3>Reel: last call for gift sets</h3>
+  <div class="body"><div class="media"><figure class="vid"><video controls playsinline preload="none" poster="t/R07_cover.jpg" src="m/R07.mp4"></video></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Last call for holiday gift sets.
+Two games or more save 15% until December 14, and orders by Dec 14 arrive in time for the holidays.
+What's still on your list?
+#holidaygifts #giftsforkids #lastminutegifts #familygamenight</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">Gift sets</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="R07"></div></article><article class="item" data-key="S04" data-ch="story" data-w="3">
+  <header><span class="d">יום שבת 12.12</span><span class="ch ch-story">סטוריז</span><span class="id en">S04</span></header>
+  <h3>Story set: last call</h3>
+  <div class="body"><div class="media"><div class="strip st"><figure class="" data-full="m/S04_a.jpg"><img loading="lazy" src="t/S04_a.jpg" alt=""></figure><figure class="" data-full="m/S04_b.jpg"><img loading="lazy" src="t/S04_b.jpg" alt=""></figure></div></div><div class="txt">
+    <div class="kv"><span>מוצר</span><p class="en">Gift sets</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall" target="_blank" rel="noopener">lupashgames.com/discount/GIFTSET15?redirect=%2Fcollections%2Fall</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="S04"></div></article></div></section><section class="week"><div class="wh"><h2>שבוע 5 · סגירה</h2><span class="wd">14–15 בדצמבר</span></div><p class="wn">פוסט אחרון ומייל עזרה לחופשת החורף.</p>
+  <div class="items"><article class="item" data-key="F09" data-ch="feed" data-w="4">
+  <header><span class="d">יום שני 14.12</span><span class="ch ch-feed">פוסט פייסבוק + אינסטגרם</span><span class="id en">F09</span></header>
+  <h3>Feeling of the week: happy</h3>
+  <div class="body"><div class="media"><figure class="" data-full="m/F09.jpg"><img loading="lazy" src="t/F09.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>טקסט הפוסט</span><p class="en cap">Feeling of the week: happy.
+Noticing happy moments out loud helps kids find more of them.
+One question to ask: &quot;What was the best part of your day?&quot;
+One thing to try: a &quot;best part&quot; round at dinner every night this week.
+What was the best part of yours?
+#feelingoftheweek #happykids #socialemotionallearning #familytime</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">CBTiger</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com/products/cbtiger-card-game" target="_blank" rel="noopener">lupashgames.com/products/cbtiger-card-game</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="F09"></div></article><article class="item" data-key="E09" data-ch="email" data-w="4">
+  <header><span class="d">יום שלישי 15.12</span><span class="ch ch-email">אימייל</span><span class="id en">E09</span></header>
+  <h3>Ten screen-free ideas for winter break</h3>
+  <div class="body"><div class="media"><figure class="mail" data-full="m/mail_E09.jpg"><img loading="lazy" src="t/mail_E09.jpg" alt=""></figure></div><div class="txt"><div class="kv"><span>שורת נושא</span><p class="en">Ten screen-free ideas for winter break</p></div><div class="kv"><span>טקסט מקדים</span><p class="en">For the days when &quot;I'm bored&quot; starts at breakfast.</p></div><div class="kv"><span>סוג</span><p>מועיל (טיפ / רעיונות לשיחה) · חתום על ידי דנה</p></div>
+    <div class="kv"><span>מוצר</span><p class="en">—</p></div>
+    <div class="kv"><span>לינק</span><p class="en"><a href="https://lupashgames.com" target="_blank" rel="noopener">lupashgames.com</a></p></div>
+    <p class="ai">כולל תמונות שנוצרו ב-AI על בסיס המוצר האמיתי: להפעיל את תווית ה-AI בעת הפרסום (לפי מדריך המותג).</p>
+  </div></div>
+  <div class="rev" data-key="E09"></div></article></div></section>
+<section class="week"><h2>החלטות שצריכות אתכם</h2><div class="box"><ol class="q">
+<li><b>מבצע המתנות:</b> לאשר 15% על 2 משחקים ומעלה, 23.11–14.12, קוד <span class="en">GIFTSET15</span>? צריך לוודא שהמרווח מאפשר את זה.</li>
+<li><b>תאריך הזמנה אחרון לחגים:</b> כתבנו "Order by December 14". צריך לאשר מול זמני המשלוח בפועל.</li>
+<li><b>מוזיקה ברילס:</b> בסרטונים עם הילדים האמיתיים נשמר הסאונד המקורי. בשאר מומלץ להוסיף מוזיקה מהספרייה של אינסטגרם בזמן ההעלאה.</li>
+<li><b>תמונות AI:</b> חלק מהתמונות נוצרו ב-AI על בסיס המוצר האמיתי. לפי מדריך המותג, מפעילים את תווית ה-AI בפרסום. הפריטים מסומנים בסגול.</li>
+<li><b>תוכנית נובמבר הקודמת</b> מוחלפת מ-16.11. מה שכבר פורסם עד אז נשאר.</li></ol></div></section>
+</div>
+<div id="lb" role="dialog" aria-modal="true"><button class="x" type="button" aria-label="סגירה">✕</button><div class="scroll"><img alt=""></div></div><div id="flash" role="status"></div>
+<script>
+const LIST=[{"id":"F01","label":"יום שני 16.11 · פוסט פייסבוק + אינסטגרם · F01 · Feeling of the week: confident"},{"id":"S01","label":"יום שני 16.11 · סטוריז · S01 · Story set: the \"fine\" poll"},{"id":"E01","label":"יום שלישי 17.11 · אימייל · E01 · Five questions to ask at dinner this week"},{"id":"R01","label":"יום שלישי 17.11 · רילס · R01 · Reel: Go Fish, but with feelings"},{"id":"C01","label":"יום חמישי 19.11 · קרוסלה פייסבוק + אינסטגרם · C01 · Inside the box: Emotions Flashcards"},{"id":"E02","label":"יום שישי 20.11 · אימייל · E02 · Three games in one deck"},{"id":"R02","label":"יום שבת 21.11 · רילס · R02 · Reel: one move says it all"},{"id":"P01","label":"יום שני 23.11 · מבצע באתר · P01 · Site offer: Holiday Gift Sets (23.11–14.12)"},{"id":"E03","label":"יום שני 23.11 · אימייל · E03 · Holiday gift sets are here"},{"id":"S02","label":"יום שני 23.11 · סטוריז · S02 · Story set: gift sets launch"},{"id":"R03","label":"יום שלישי 24.11 · רילס · R03 · Reel: \"What would you choose?\" (real kids)"},{"id":"F02","label":"יום רביעי 25.11 · פוסט פייסבוק + אינסטגרם · F02 · Holiday gift sets: the Emotions Starter"},{"id":"E04","label":"יום חמישי 26.11 · אימייל · E04 · Questions for the holiday table (Thanksgiving)"},{"id":"F03","label":"יום חמישי 26.11 · פוסט פייסבוק + אינסטגרם · F03 · Thanksgiving: one question for the table"},{"id":"F04","label":"יום שבת 28.11 · פוסט פייסבוק + אינסטגרם · F04 · Feeling of the week: hopeful"},{"id":"F05","label":"יום שני 30.11 · פוסט פייסבוק + אינסטגרם · F05 · Feeling of the week: worried"},{"id":"E05","label":"יום שלישי 1.12 · אימייל · E05 · How to play CBTiger in 60 seconds"},{"id":"R04","label":"יום שלישי 1.12 · רילס · R04 · Reel: three gifts, three kinds of kids"},{"id":"C02","label":"יום חמישי 3.12 · קרוסלה פייסבוק + אינסטגרם · C02 · Gift guide carousel: a game for every kid"},{"id":"E06","label":"יום שישי 4.12 · אימייל · E06 · Gift guide + Hanukkah begins tonight"},{"id":"F06","label":"יום שישי 4.12 · פוסט פייסבוק + אינסטגרם · F06 · Hanukkah: eight nights, eight feelings"},{"id":"S03","label":"יום שישי 4.12 · סטוריז · S03 · Story set: gift guide quiz"},{"id":"R05","label":"יום שבת 5.12 · רילס · R05 · Reel: snap the feeling"},{"id":"F07","label":"יום שני 7.12 · פוסט פייסבוק + אינסטגרם · F07 · Feeling of the week: calm"},{"id":"E07","label":"יום שלישי 8.12 · אימייל · E07 · A calm-down plan for busy holiday days"},{"id":"R06","label":"יום שלישי 8.12 · רילס · R06 · Reel: CBTrip in 60 seconds (real kids)"},{"id":"F08","label":"יום חמישי 10.12 · פוסט פייסבוק + אינסטגרם · F08 · For classrooms and counseling rooms"},{"id":"E08","label":"יום שישי 11.12 · אימייל · E08 · Last days: gift sets + order-by date"},{"id":"R07","label":"יום שבת 12.12 · רילס · R07 · Reel: last call for gift sets"},{"id":"S04","label":"יום שבת 12.12 · סטוריז · S04 · Story set: last call"},{"id":"F09","label":"יום שני 14.12 · פוסט פייסבוק + אינסטגרם · F09 · Feeling of the week: happy"},{"id":"E09","label":"יום שלישי 15.12 · אימייל · E09 · Ten screen-free ideas for winter break"}];const PAGE='lupash-holiday-2026';
+const ST={};try{Object.assign(ST,JSON.parse(localStorage.getItem('lh26_st')||'{}'))}catch(e){}
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const flash=m=>{const f=$('#flash');f.textContent=m;f.classList.add('on');clearTimeout(f._t);f._t=setTimeout(()=>f.classList.remove('on'),2600)};
+const SID=(()=>{try{let s=localStorage.getItem('lh26_sid');if(!s){s=Math.random().toString(36).slice(2,10);localStorage.setItem('lh26_sid',s)}return s}catch(e){return Math.random().toString(36).slice(2,10)}})();
+function paint(k){const s=ST[k]||{},st=s.status||'pending';const el=$('.rev[data-key="'+k+'"]');if(!el)return;
+ el.querySelector('.ok').classList.toggle('on',st==='approved');el.querySelector('.ok').setAttribute('aria-pressed',st==='approved');
+ el.querySelector('.fx').classList.toggle('on',st==='changes');el.querySelector('.fx').setAttribute('aria-pressed',st==='changes');
+ el.querySelector('.pill').textContent=st==='approved'?'מאושר':st==='changes'?'צריך תיקון':'ממתין לאישור';el.closest('.item').dataset.st=st;}
+function sum(){const c={approved:0,changes:0,pending:0};LIST.forEach(i=>c[(ST[i.id]||{}).status||'pending']++);$('#cA').textContent=c.approved;$('#cC').textContent=c.changes;$('#cP').textContent=c.pending;$('#prog i').style.width=(100*c.approved/LIST.length)+'%'}
+let FIL='all';function filt(){$$('.item').forEach(a=>a.hidden=FIL!=='all'&&(a.dataset.st||'pending')!==FIL)}
+let tm=null,last='';function send(manual){clearTimeout(tm);const run=async()=>{const who=$('#who').value.trim();try{localStorage.setItem('lh26_who',who)}catch(e){}
+ const items=LIST.filter(i=>ST[i.id]&&((ST[i.id].status&&ST[i.id].status!=='pending')||ST[i.id].note)).map(i=>({id:i.id,label:i.label,status:ST[i.id].status==='approved'?'ok':ST[i.id].status==='changes'?'chg':'',note:(ST[i.id].note||'').trim()}));
+ const payload=JSON.stringify({who,items});if(!manual&&(payload===last||!items.length))return;
+ try{const r=await fetch('https://a.klaviyo.com/client/events/?company_id=V4zxD6',{method:'POST',headers:{'content-type':'application/json',revision:'2024-10-15'},body:JSON.stringify({data:{type:'event',attributes:{properties:{session:SID,who,items:JSON.stringify(items),page:PAGE,manual:!!manual},metric:{data:{type:'metric',attributes:{name:'Approval Board Feedback'}}},profile:{data:{type:'profile',attributes:{external_id:'lupash-approval-board'}}}}}})});
+  if(!r.ok)throw 0;last=payload;flash(manual?'נשלח לסוכנות. תודה!':'נשמר ונשלח לסוכנות ✓')}catch(e){if(manual)flash('השליחה נכשלה. אפשר ללחוץ "העתקת סיכום" ולשלוח בוואטסאפ.')}};if(manual)run();else tm=setTimeout(run,2500)}
+function save(k,p){ST[k]=Object.assign({},ST[k],p,{at:Date.now()});try{localStorage.setItem('lh26_st',JSON.stringify(ST))}catch(e){}paint(k);sum();send(false)}
+$$('.rev').forEach(el=>{const k=el.dataset.key;el.innerHTML='<div class="row"><button type="button" class="ok" aria-pressed="false">✓ מאושר</button><button type="button" class="fx" aria-pressed="false">✎ צריך תיקון</button><span class="pill"></span></div><label class="pill" for="n_'+k+'">הערות</label><textarea id="n_'+k+'" placeholder="מה לשנות? (נשמר אוטומטית)"></textarea>';
+ const ta=el.querySelector('textarea');ta.value=(ST[k]||{}).note||'';
+ el.querySelector('.ok').onclick=()=>save(k,{status:(ST[k]||{}).status==='approved'?'pending':'approved',note:ta.value});
+ el.querySelector('.fx').onclick=()=>save(k,{status:(ST[k]||{}).status==='changes'?'pending':'changes',note:ta.value});
+ let t;ta.oninput=()=>{clearTimeout(t);t=setTimeout(()=>save(k,{note:ta.value,status:(ST[k]||{}).status||'pending'}),900)};paint(k)});
+$$('.f').forEach(b=>b.onclick=()=>{FIL=b.dataset.f;$$('.f').forEach(x=>x.setAttribute('aria-pressed',x===b));filt()});
+try{$('#who').value=localStorage.getItem('lh26_who')||''}catch(e){}$('#who').oninput=()=>send(false);$('#send').onclick=()=>send(true);
+$('#copy').onclick=()=>{const t='Lupash — אישורים לתוכנית 16.11–15.12\n'+LIST.map(i=>{const s=ST[i.id]||{};return i.label+' — '+(s.status==='approved'?'מאושר':s.status==='changes'?'לתיקון':'ממתין')+(s.note?': '+s.note:'')}).join('\n');
+ try{navigator.clipboard.writeText(t).then(()=>flash('הסיכום הועתק'),()=>prompt0(t))}catch(e){prompt0(t)}};
+function prompt0(t){const a=document.createElement('textarea');a.value=t;a.style.cssText='width:100%;min-height:200px';$('#bar').appendChild(a);a.select()}
+$$('figure[data-full]').forEach(f=>f.onclick=()=>{$('#lb img').src=f.dataset.full;$('#lb').classList.add('on')});
+$('#lb').onclick=e=>{if(e.target.id==='lb'||e.target.classList.contains('x'))$('#lb').classList.remove('on')};document.onkeydown=e=>{if(e.key==='Escape')$('#lb').classList.remove('on')};
+sum();
+</script></body></html>
